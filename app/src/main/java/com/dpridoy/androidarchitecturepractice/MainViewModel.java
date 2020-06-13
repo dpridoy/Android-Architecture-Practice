@@ -13,6 +13,12 @@ public class MainViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<User>> user=new MutableLiveData<>();
 
+    private MainNavigator navigator;
+
+    public void setNavigator(MainNavigator navigator) {
+        this.navigator = navigator;
+    }
+
     public MainViewModel(@NonNull Application application) {
         super(application);
     }
@@ -31,6 +37,15 @@ public class MainViewModel extends AndroidViewModel {
         users.add(new User("Ridoy 5","dpridoy@gmail.com"));
         users.add(new User("Ridoy 6","dpridoy@gmail.com"));
         this.user.setValue(users);
+    }
+
+    public void itemClick(User user){
+        navigator.onItemClick(user);
+    }
+
+
+    public interface MainNavigator{
+        void onItemClick(User user);
     }
 
 }
