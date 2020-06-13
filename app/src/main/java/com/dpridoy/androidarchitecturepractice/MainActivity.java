@@ -2,6 +2,8 @@ package com.dpridoy.androidarchitecturepractice;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 
@@ -9,18 +11,24 @@ import com.dpridoy.androidarchitecturepractice.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    User user;
+    MainViewModel viewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_main);
-        ActivityMainBinding binding= DataBindingUtil.setContentView(this,R.layout.activity_main);
+        final ActivityMainBinding binding= DataBindingUtil.setContentView(this,R.layout.activity_main);
 
-        user=new User();
-        user.name="Nasirul Haque";
-        user.email="dpridoy@gmail.com";
-        binding.setUser(user);
+        viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+
+        viewModel.getUser().observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                binding.setUser(user);
+            }
+        });
+
 
     }
 }
