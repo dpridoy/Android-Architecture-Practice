@@ -1,45 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data>
-        <variable
-            name="user"
-            type="com.dpridoy.androidarchitecturepractice.User" />
-        <variable
-            name="model"
-            type="com.dpridoy.androidarchitecturepractice.MainViewModel" />
-    </data>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/name"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:text="@{user.name}"
-            />
-
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/name"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:text="@{user.email}"
-            />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/email"
-            android:gravity="center"
-            android:text="Update"
-            android:onClick="@{()->model.updateUser()}"/>
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
 
 </layout>
