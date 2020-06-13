@@ -22,9 +22,11 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
+        viewModel.setUser();
         viewModel.getUser().observe(this, new Observer<User>() {
             @Override
             public void onChanged(User user) {
+                binding.setModel(viewModel);
                 binding.setUser(user);
             }
         });

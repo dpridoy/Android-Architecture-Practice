@@ -25,4 +25,11 @@ public class MainViewModel extends AndroidViewModel {
         user.email="dpridoy@gmail.com";
         this.user.setValue(user);
     }
+
+    public void updateUser(){
+        User user=new User();
+        user.name="Test";
+        user.email="test@gmail.com";
+        this.user.setValue(user);
+    }
 }
