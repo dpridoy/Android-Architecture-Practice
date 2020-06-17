@@ -1,5 +1,7 @@
 package com.dpridoy.androidarchitecturepractice;
 
+import androidx.databinding.ObservableBoolean;
+
 public class User {
     public String name;
     public String email;
@@ -8,4 +10,6 @@ public class User {
         this.name = name;
         this.email = email;
     }
+
+    public ObservableBoolean isMark = new ObservableBoolean(false);
 }

@@ -28,6 +28,7 @@
             android:textSize="19sp"
             android:textStyle="bold"
             android:text="@{user.name}"
+            android:textColor="@{user.isMark ? @color/markText : @color/normalText}"
             />
 
         <TextView

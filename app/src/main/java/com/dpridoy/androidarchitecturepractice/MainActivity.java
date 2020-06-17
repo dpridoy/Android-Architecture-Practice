@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.dpridoy.androidarchitecturepractice.databinding.ActivityMainBinding;
@@ -40,7 +41,29 @@ public class MainActivity extends AppCompatActivity implements MainViewModel.Mai
     }
 
     @Override
-    public void onItemClick(User user) {
-        new AlertDialog.Builder(this).setMessage(user.name+"\n"+user.email).show();
+    public void onItemClick(final User user) {
+        AlertDialog.Builder alert=new AlertDialog.Builder(this);
+        alert.setMessage(user.name+"\n"+user.email);
+
+        if(user.isMark.get()){
+            alert.setPositiveButton("UN-MARK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    user.isMark.set(false);
+                    dialog.dismiss();
+                }
+            });
+        }else {
+            alert.setPositiveButton("MARK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    user.isMark.set(true);
+                    dialog.dismiss();
+                }
+            });
+        }
+
+
+        alert.show();
     }
 }
